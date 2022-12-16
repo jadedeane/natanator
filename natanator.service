@@ -1,0 +1,9 @@
+[Unit]
+Description=Natanator
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/natanator.sh
+
+[Install]
+WantedBy=multi-user.target
