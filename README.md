@@ -37,7 +37,7 @@ chmod 755 /etc/systemd/system/natanator.service
 Reload systemd, and enable the service:
 
 ```
-sudo systemctl daemon-reload
+systemctl daemon-reload
 systemctl enable natanator.service
 systemctl start natanator.service
 ```
