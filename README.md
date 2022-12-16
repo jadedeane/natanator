@@ -1,19 +1,19 @@
 # natanator
-Unifi OS persistent NAT modification service
+UniFi OS persistent NAT modification service
 
 # Background
 
-If you're like me, you'd like a way to persistently modify low-level Unifi OS networking. In my case, that's disabling IPv4 NAT, as Unifi provides no standard supported means to do this, and I have a northbound pfSense router/firewall.
+If you're like me, you'd like a way to persistently modify low-level UniFi OS networking. In my case, that's disabling IPv4 NAT, as Unifi provides no standard supported means to do this, and I have a northbound pfSense router/firewall.
 
 tl;dr, double NAT bad.
 
-Starting with Unifi OS 2.x, systemd is introduced. This allows the use of a simple service to disable NAT.
+Starting with UniFi OS 2.x, systemd is introduced. This allows the use of a simple service to disable NAT.
 
-The following service examples use [UnifiOS 2.4.23](https://community.ui.com/releases/UniFi-OS-Dream-Machines-2-4-23/aebbba64-9e7e-4151-bcca-34ed08761f08?page=21), on a UDM Pro. Things should translate just fine to future Unifi OS 2.x and eventual 3.x releases, but I don't have a UDM Pro SE that as of this writing [supported Unifi OS 3.0.13](https://community.ui.com/releases/UniFi-OS-Dream-Machine-SE-3-0-13/cf25f68e-6906-4125-9d77-9fce05d6658a).
+The following service examples use [UnifiOS 2.4.23](https://community.ui.com/releases/UniFi-OS-Dream-Machines-2-4-23/aebbba64-9e7e-4151-bcca-34ed08761f08?page=21), on a UDM Pro. Things should translate just fine to future UniFi OS 2.x and eventual 3.x releases, but I don't have a UDM Pro SE that as of this writing [supported UniFi OS 3.0.13](https://community.ui.com/releases/UniFi-OS-Dream-Machine-SE-3-0-13/cf25f68e-6906-4125-9d77-9fce05d6658a).
 
 # Alternatives
 
-Until recently, you could use [unifios-utilities](https://github.com/unifi-utilities/unifios-utilities) on Unifi OS 1.x releases, with a simple [boot script](https://github.com/unifi-utilities/unifios-utilities/tree/main/on-boot-script). This is no longer possible, as chronicled [here](https://github.com/unifi-utilities/unifios-utilities/issues/416).
+Until recently, you could use [unifios-utilities](https://github.com/unifi-utilities/unifios-utilities) on UniFi OS 1.x releases, with a simple [boot script](https://github.com/unifi-utilities/unifios-utilities/tree/main/on-boot-script). This is no longer possible, as chronicled [here](https://github.com/unifi-utilities/unifios-utilities/issues/416).
 
 # Solution
 
