@@ -62,8 +62,7 @@ Warning: Journal has been rotated since unit was started. Log output is incomple
 root@udm:~# iptables -t nat -L POSTROUTING
 Chain POSTROUTING (policy ACCEPT)
 target     prot opt source               destination
-ACCEPT     all  --  anywhere             anywhere
-ACCEPT     all  --  anywhere             anywhere
+root@udm:~#
 ```
 
 Reboot and validate persistance.
