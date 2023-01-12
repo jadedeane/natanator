@@ -3,13 +3,13 @@ UniFi OS persistent NAT modification service
 
 # Background
 
-If you're like me, you'd like a way to persistently modify low-level UniFi OS networking. In my case, that's disabling IPv4 NAT, as Unifi provides no standard supported means to do this, and I have a northbound pfSense router/firewall.
+If you're like me, you'd like a way to persistently modify low-level UniFi OS networking. In my case, that's disabling IPv4 NAT, as UniFi provides no standard supported means to do this, and I have a northbound pfSense router/firewall.
 
 tl;dr, double NAT bad.
 
-Starting with UniFi OS 2.x, systemd is introduced. This allows the use of a simple service to disable NAT.
+Starting with UniFi OS 2.4.23, systemd is introduced. This allows the use of a simple service to disable NAT.
 
-The following service examples use [UnifiOS 2.4.23](https://community.ui.com/releases/UniFi-OS-Dream-Machines-2-4-23/aebbba64-9e7e-4151-bcca-34ed08761f08?page=21), on a UDM Pro. Things should translate just fine to future UniFi OS 2.x and eventual 3.x releases, but I don't have a UDM Pro SE that as of this writing [supported UniFi OS 3.0.13](https://community.ui.com/releases/UniFi-OS-Dream-Machine-SE-3-0-13/cf25f68e-6906-4125-9d77-9fce05d6658a).
+The following service examples use [UniFi OS 2.4.26](https://community.ui.com/releases/UniFi-OS-Dream-Machines-2-4-26/6a9dc748-180b-4724-b6cf-0082554554fa), on a UDM Pro. Things should translate just fine to future UniFi OS 2.x and eventual 3.x releases, but I don't have a UDM Pro SE that as of this writing [supported UniFi OS 3.0.13](https://community.ui.com/releases/UniFi-OS-Dream-Machine-SE-3-0-13/cf25f68e-6906-4125-9d77-9fce05d6658a).
 
 # Alternatives
 
