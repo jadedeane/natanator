@@ -9,7 +9,7 @@ tl;dr, double NAT bad.
 
 Starting with UniFi OS 2.4.23, systemd is introduced. This allows the use of a simple service to disable NAT.
 
-The following service examples use [UniFi OS 2.4.26](https://community.ui.com/releases/UniFi-OS-Dream-Machines-2-4-26/6a9dc748-180b-4724-b6cf-0082554554fa), on a UDM Pro. Things should translate just fine to future UniFi OS 2.x and eventual 3.x releases, but I don't have a UDM Pro SE that as of this writing [supported UniFi OS 3.0.13](https://community.ui.com/releases/UniFi-OS-Dream-Machine-SE-3-0-13/cf25f68e-6906-4125-9d77-9fce05d6658a).
+The following service examples use [UniFi OS 2.4.27](https://community.ui.com/releases/UniFi-OS-Dream-Machines-2-4-27/353e9672-ce67-4ed4-9b8f-4ebfcd92e90e), on a UDM Pro (i.e., non-SE). Things should translate just fine to future UniFi OS 2.x and eventual 3.x releases, but I don't have a UDM Pro SE that as of this writing [supported UniFi OS 3.0.13](https://community.ui.com/releases/UniFi-OS-Dream-Machine-SE-3-0-13/cf25f68e-6906-4125-9d77-9fce05d6658a).
 
 # Alternatives
 
@@ -48,21 +48,20 @@ The service disabling NAT is now persistent.
 root@udm:~# systemctl status natanator.service
 ● natanator.service - Natanator
    Loaded: loaded (/etc/systemd/system/natanator.service; enabled; vendor preset: enabled)
-   Active: active (running) since Thu 2022-12-15 14:58:07 PST; 1h 5min ago
- Main PID: 1342 (natanator.sh)
-    Tasks: 2 (limit: 4727)
-   Memory: 1.1M
-      CPU: 304ms
+   Active: active (running) since Mon 2023-01-30 15:23:09 PST; 11s ago
+ Main PID: 15869 (natanator.sh)
+    Tasks: 2 (limit: 4726)
+   Memory: 444.0K
+      CPU: 4ms
    CGroup: /system.slice/natanator.service
-           ├─ 364 sleep 60
-           └─1342 /bin/sh /usr/local/bin/natanator.sh
+           ├─15869 /bin/sh /usr/local/bin/natanator.sh
+           └─15871 sleep 60
 
-Warning: Journal has been rotated since unit was started. Log output is incomplete or unavailable.
+Jan 30 15:23:09 udm systemd[1]: Started Natanator.
 
 root@udm:~# iptables -t nat -L POSTROUTING
 Chain POSTROUTING (policy ACCEPT)
 target     prot opt source               destination
-root@udm:~#
 ```
 
 Reboot and validate persistance.
