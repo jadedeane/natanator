@@ -9,7 +9,7 @@ tl;dr, double NAT bad.
 
 Starting with UniFi OS 2.4.23, systemd is introduced. This allows the use of a simple service to disable NAT.
 
-The following service examples use [UniFi OS 2.4.27](https://community.ui.com/releases/UniFi-OS-Dream-Machines-2-4-27/353e9672-ce67-4ed4-9b8f-4ebfcd92e90e), on a UDM Pro (i.e., non-SE). Things should translate just fine to future UniFi OS 2.x and eventual 3.x releases, but I don't have a UDM Pro SE that as of this writing [supported UniFi OS 3.0.13](https://community.ui.com/releases/UniFi-OS-Dream-Machine-SE-3-0-13/cf25f68e-6906-4125-9d77-9fce05d6658a).
+The following service examples use [UniFi OS 2.4.27](https://community.ui.com/releases/UniFi-OS-Dream-Machines-2-4-27/97ae6597-ee40-4e72-8e8f-76d067f84d37), on a UDM Pro (non-SE). Things should translate just fine to future UniFi OS 2.x and eventual 3.x releases, but I don't have a UDM Pro SE that as of this writing [supported UniFi OS 3.0.13](https://community.ui.com/releases/UniFi-OS-Cloud-Keys-Gen2-3-0-13/388205f2-e7cd-4c3d-9349-6f581f4bdaa7).
 
 # Alternatives
 
