@@ -9,7 +9,7 @@ tl;dr, double NAT bad.
 
 Starting with UniFi OS 2.4.23, systemd is introduced. This allows the use of a simple service to disable NAT.
 
-The following service examples use [UniFi OS 2.4.27](https://community.ui.com/releases/UniFi-OS-Dream-Machines-2-4-27/97ae6597-ee40-4e72-8e8f-76d067f84d37), on a UDM Pro (non-SE). Things should translate just fine to future UniFi OS 2.x and eventual 3.x releases, but I don't have a UDM Pro SE that as of this writing [supported UniFi OS 3.0.13](https://community.ui.com/releases/UniFi-OS-Cloud-Keys-Gen2-3-0-13/388205f2-e7cd-4c3d-9349-6f581f4bdaa7).
+The following service examples use [UniFi OS 3.0.19](https://community.ui.com/releases/UniFi-OS-Dream-Machines-3-0-19/aae685bb-4b96-4016-9125-29e57d7f2844), on a UDM Pro (non-SE).
 
 # Alternatives
 
@@ -47,17 +47,17 @@ The service disabling NAT is now persistent.
 ```
 root@udm:~# systemctl status natanator.service
 ● natanator.service - Natanator
-   Loaded: loaded (/etc/systemd/system/natanator.service; enabled; vendor preset: enabled)
-   Active: active (running) since Mon 2023-01-30 15:23:09 PST; 11s ago
- Main PID: 15869 (natanator.sh)
-    Tasks: 2 (limit: 4726)
-   Memory: 444.0K
-      CPU: 4ms
-   CGroup: /system.slice/natanator.service
-           ├─15869 /bin/sh /usr/local/bin/natanator.sh
-           └─15871 sleep 60
+     Loaded: loaded (/etc/systemd/system/natanator.service; enabled; vendor preset: enabled)
+     Active: active (running) since Mon 2023-03-20 10:56:35 PDT; 5s ago
+   Main PID: 39805 (natanator.sh)
+      Tasks: 2 (limit: 4725)
+     Memory: 460.0K
+        CPU: 5ms
+     CGroup: /system.slice/natanator.service
+             ├─39805 /bin/sh /usr/local/bin/natanator.sh
+             └─39814 sleep 60
 
-Jan 30 15:23:09 udm systemd[1]: Started Natanator.
+Mar 20 10:56:35 udm systemd[1]: Started Natanator.
 
 root@udm:~# iptables -t nat -L POSTROUTING
 Chain POSTROUTING (policy ACCEPT)
