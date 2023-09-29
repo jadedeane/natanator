@@ -21,47 +21,55 @@ Simple [bash script](natanator.sh) that disables NAT, and a systemd [service def
 
 # Installation
 
-Place the [bash script](natanator.sh) in `/usr/local/bin`, and make it executable:
+Login to your UniFiOS device (e.g. UDM-pro) using ssh and perform the following steps:
 
-```
-cp <natanator.sh> /usr/local/bin/natanator.sh
-chmod +x /usr/local/bin/natanator.sh
-```
+1. Download and install the `natanator.sh` script directly on your UniFiOS device via:
+   ```sh
+   wget -O /usr/local/bin/natanator.sh https://raw.githubusercontent.com/jadedeane/natanator/main/natanator.s
+   chmod +x /usr/local/bin/natanator.sh
+   ```
 
-Place the [service definition file](natanator.service) in ` /etc/systemd/system`, and modify its permissions:
+2. Download and install `natanator.service` definition file in `/etc/systemd/system` via:
+   ```sh
+   wget -O /etc/systemd/system/natanator.service https://raw.githubusercontent.com/jadedeane/natanator/main/natanator.service
+   chmod 755 /etc/systemd/system/natanator.service
+   ```
 
-```
-cp <natanator.service> /etc/systemd/system/natanator.service
-chmod 755 /etc/systemd/system/natanator.service
-```
-Reload systemd, and enable the service:
+3. Reload systemd, enable and start the service:
+   ```sh
+   systemctl daemon-reload
+   systemctl enable natanator.service
+   systemctl start natanator.service
+   ```
 
-```
-systemctl daemon-reload
-systemctl enable natanator.service
-systemctl start natanator.service
-```
+4. Reboot and validate persistance.
 
-The service disabling NAT is now persistent.
+# Operation check
 
-```
-root@udm:~# systemctl status natanator.service
-● natanator.service - Natanator
-     Loaded: loaded (/etc/systemd/system/natanator.service; enabled; vendor preset: enabled)
-     Active: active (running) since Mon 2023-03-20 10:56:35 PDT; 5s ago
-   Main PID: 39805 (natanator.sh)
-      Tasks: 2 (limit: 4725)
-     Memory: 460.0K
-        CPU: 5ms
-     CGroup: /system.slice/natanator.service
-             ├─39805 /bin/sh /usr/local/bin/natanator.sh
-             └─39814 sleep 60
+To check the correct operation of the natanator service you can execute the following commands:
 
-Mar 20 10:56:35 udm systemd[1]: Started Natanator.
+1. Check `natanator.service` status via:
+   ```sh
+   systemctl status natanator.service
+   ```
+   which should then output something like:
+   ```sh
+   ● natanator.service - Natanator
+        Loaded: loaded (/etc/systemd/system/natanator.service; enabled; vendor preset: enabled)
+        Active: active (running) since Mon 2023-03-20 10:56:35 PDT; 5s ago
+      Main PID: 39805 (natanator.sh)
+         Tasks: 2 (limit: 4725)
+        Memory: 460.0K
+           CPU: 5ms
+        CGroup: /system.slice/natanator.service
+                ├─39805 /bin/sh /usr/local/bin/natanator.sh
+                └─39814 sleep 60
 
-root@udm:~# iptables -t nat -L POSTROUTING
-Chain POSTROUTING (policy ACCEPT)
-target     prot opt source               destination
-```
+   Mar 20 10:56:35 udm systemd[1]: Started Natanator.
+   ```
 
-Reboot and validate persistance.
+2. Check correct removal of the NAT/MASQUERADING firewall rules via:
+   ```sh
+   iptables -t nat -L UBIOS_POSTROUTING_USER_HOOK | grep "MASQUERADE .* UBIOS_ADDRv4_eth."
+   ```
+   If correctly removed this command should NOT return any output
