@@ -25,7 +25,7 @@ Login to your UniFiOS device (e.g. UDM-pro) using ssh and perform the following 
 
 1. Download and install the `natanator.sh` script directly on your UniFiOS device via:
    ```sh
-   wget -O /usr/local/bin/natanator.sh https://raw.githubusercontent.com/jadedeane/natanator/main/natanator.s
+   wget -O /usr/local/bin/natanator.sh https://raw.githubusercontent.com/jadedeane/natanator/main/natanator.sh
    chmod +x /usr/local/bin/natanator.sh
    ```
 
