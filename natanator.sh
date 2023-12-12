@@ -6,7 +6,7 @@ do
     # which will be added per default for UBIOS_ADDRv4_ethX (eth8/eth9) to
     # manage NAT throught WAN
     rules=$(/usr/sbin/iptables -t nat -L UBIOS_POSTROUTING_USER_HOOK --line-numbers | \
-                grep "MASQUERADE .* UBIOS_ADDRv4_eth. src" | \
+                grep "MASQUERADE .* UBIOS_.*ADDRv4_eth. src" | \
                 cut -d' ' -f1)
 
     # for each rule identified we issue a delete operation in reverse
