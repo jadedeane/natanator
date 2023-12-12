@@ -7,9 +7,7 @@ If you're like me, you'd like a way to persistently modify low-level UniFi OS ne
 
 tl;dr, double NAT bad.
 
-Starting with UniFi OS 2.4.23, systemd is introduced. This allows the use of a simple service to disable NAT.
-
-The following service examples use [UniFi OS 3.0.19](https://community.ui.com/releases/UniFi-OS-Dream-Machines-3-0-19/aae685bb-4b96-4016-9125-29e57d7f2844), on a UDM Pro (non-SE).
+Starting with UniFi OS 2.4.23, systemd is introduced. This allows the use of a simple service to disable NAT, tested against UniFi OS 3.2.x.
 
 # Alternatives
 
@@ -70,6 +68,6 @@ To check the correct operation of the natanator service you can execute the foll
 
 2. Check correct removal of the NAT/MASQUERADING firewall rules via:
    ```sh
-   iptables -t nat -L UBIOS_POSTROUTING_USER_HOOK | grep "MASQUERADE .* UBIOS_ADDRv4_eth."
+   iptables -t nat -L UBIOS_POSTROUTING_USER_HOOK | grep "MASQUERADE .* UBIOS_.*ADDRv4_eth."
    ```
    If correctly removed this command should NOT return any output
