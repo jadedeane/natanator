@@ -1,13 +1,15 @@
 # natanator
 UniFi OS persistent NAT modification service
 
+Note: No longer using UDM and actively supporting this tool. Feel free to MR updates or fork.
+
 # Background
 
 If you're like me, you'd like a way to persistently modify low-level UniFi OS networking. In my case, that's disabling IPv4 NAT, as UniFi provides no standard supported means to do this, and I have a northbound pfSense router/firewall.
 
 tl;dr, double NAT bad.
 
-Starting with UniFi OS 2.4.23, systemd is introduced. This allows the use of a simple service to disable NAT, tested against UniFi OS 3.2.x.
+Starting with UniFi OS 2.4.23, systemd is introduced. This allows the use of a simple service to disable NAT, tested against UniFi OS 3.2.7.
 
 # Alternatives
 
